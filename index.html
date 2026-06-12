@@ -6,524 +6,278 @@
 <title>JellyFil - Escolha seu Pacote</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
-    --accent: #FFD700;
-    --red: #C41E3A;
-    --red-dark: #8B0000;
-    --green: #00BF63;
+    --black: #000;
+    --red: #f23d4c;
+    --yellow: #fcc819;
+    --grey: #e1e1e1;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    font-family: 'Nunito', 'Segoe UI', sans-serif;
-    color: #1a1a1a;
-    background: #f4f4f4;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    background: var(--black);
+    color: #fff;
 }
-img { max-width: 100%; height: auto; display: block; border: none; }
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; }
 
-/* HEADLINE */
-.headline {
-    text-align: center;
-    padding: 30px 20px 20px;
-    background: linear-gradient(180deg, #1a0505 0%, #3a0a0a 40%, #5a1010 70%, #8B0000 100%);
-}
-.headline-main {
-    font-size: 32px;
-    font-weight: 900;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-.headline-sub {
-    font-size: 16px;
-    font-weight: 600;
-    color: #e0e0e0;
-    max-width: 600px;
+.container {
+    max-width: 1140px;
     margin: 0 auto;
-    line-height: 1.5;
+    padding: 40px 20px 60px;
+    text-align: center;
 }
-.headline-sub em { color: #00FF00; font-style: italic; font-weight: 700; }
 
-/* COUNTDOWN */
-#cd {
-    background: linear-gradient(90deg, #8B0000 0%, #C41E3A 50%, #8B0000 100%);
-    border-radius: 10px;
-    padding: 14px 20px;
-    margin: 20px auto 0;
+/* HEADING */
+h1 {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 14px;
+}
+.rating {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    max-width: 600px;
+    gap: 8px;
+    margin-bottom: 28px;
+    font-weight: 700;
+    font-size: 18px;
 }
-#cd-label { font-size: 13px; font-weight: 800; color: #ffdddd; letter-spacing: .5px; }
-#cd-blocks { display: flex; align-items: center; gap: 6px; }
-.cd-block { text-align: center; }
-.cd-block span {
-    display: block; font-size: 32px; font-weight: 900; color: #fff;
-    font-family: 'Courier New', monospace; background: rgba(0,0,0,.25);
-    border-radius: 6px; padding: 4px 12px; min-width: 56px; line-height: 1.1;
-}
-.cd-block small { display: block; font-size: 9px; color: rgba(255,255,255,.7); letter-spacing: 1.5px; margin-top: 3px; }
-.cd-sep { font-size: 26px; font-weight: 900; color: rgba(255,255,255,.5); margin-bottom: 14px; }
+.rating .stars { color: var(--yellow); font-size: 20px; letter-spacing: 2px; }
 
 /* GRID */
 .grid {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 18px;
-    padding: 30px 10px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+@media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; }
 }
 
 /* CARD */
 .card {
-    position: relative;
-    width: 310px;
     background: #fff;
-    border: 4px solid var(--red-dark);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,.15);
-    cursor: pointer;
-    transition: transform .25s ease, box-shadow .25s ease;
+    color: #000;
+    border: 4px solid #000;
+    border-radius: 16px;
+    padding: 24px 18px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    position: relative;
 }
-.card:hover { transform: scale(1.03); box-shadow: 0 14px 35px rgba(0,0,0,.25); }
-.card--best { width: 340px; border-color: var(--red); border-width: 5px; z-index: 2; }
-
-.card-link { position: absolute; inset: 0; z-index: 5; }
-
-.header {
-    background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
-    padding: 12px 16px; color: #fff; font-size: 17px; font-weight: 700;
-    font-style: italic; letter-spacing: .5px;
+.card--best {
+    border: 6px solid var(--red);
+    background: #fffbe0;
+    transform: scale(1.04);
+    z-index: 1;
 }
-.header--best { font-style: normal; font-size: 19px; font-weight: 900; letter-spacing: 1px; }
+@media (max-width: 860px) { .card--best { transform: none; order: -1; } }
 
-.body { padding: 20px 18px 18px; background: #fff; }
-.body--best {
-    padding: 20px 18px 18px; color: #fff;
-    background: linear-gradient(180deg, #A01020 0%, #6B0010 100%);
+.badge-best {
+    background: var(--red);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+}
+.badge-popular {
+    background: #000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 
-.title { font-size: 28px; font-weight: 900; margin-bottom: 2px; }
-.title--green { color: #00FF00; font-size: 32px; text-shadow: 0 2px 8px rgba(0,255,0,.3); }
-.supply { font-size: 14px; font-weight: 400; color: #666; margin-bottom: 14px; }
-.supply--white { color: rgba(255,255,255,.85); }
-
-.img-wrap { margin: 0 auto 14px; max-width: 220px; }
-
-.price-row { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 4px; }
-.big-price { font-size: 58px; font-weight: 900; color: var(--accent); line-height: 1; text-shadow: 2px 2px 6px rgba(0,0,0,.2); }
-.big-price--green { color: #00FF00; text-shadow: 0 2px 10px rgba(0,255,0,.4); }
-
-.shipping { font-size: 13px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
-.shipping--white { color: #fff; }
-
-.benefits { text-align: left; margin: 0 auto 14px; max-width: 260px; }
-.benefits li {
-    display: flex; align-items: center; gap: 8px; padding: 6px 0;
-    font-size: 13px; font-weight: 700; border-bottom: 1.5px dotted rgba(0,0,0,.1);
+.card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
 }
-.body--best .benefits li { border-bottom-color: rgba(255,255,255,.15); color: #fff; }
-.benefits li:last-child { border-bottom: none; }
-.check { font-size: 16px; flex-shrink: 0; }
-.check--green { color: var(--green); }
-.check--dark { color: #333; }
-.save-text { color: var(--green); }
-.body--best .save-text { color: var(--accent); }
 
-.guarantee { color: var(--accent); font-size: 14px; font-weight: 700; margin: 8px 0 4px; }
-.surprise { color: var(--accent); font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+.card img.bottle {
+    max-width: 180px;
+    margin-bottom: 14px;
+}
+.card--best img.bottle { max-width: 220px; }
 
-/* BUTTONS */
+.save {
+    color: var(--red);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    line-height: 1;
+}
+.price-row .dollar { font-size: 28px; font-weight: 700; align-self: flex-start; margin-top: 4px; }
+.price-row .price { font-size: 60px; font-weight: 900; }
+.price-row .per { font-size: 14px; font-weight: 500; align-self: flex-end; margin-bottom: 8px; margin-left: 4px; }
+
+.shipping {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #00a84f;
+    margin: 6px 0 16px;
+}
+.shipping.paid { color: #666; }
+
 .btn {
-    display: block; width: 100%; padding: 14px 20px; font-size: 18px; font-weight: 900;
-    border-radius: 6px; border: none; cursor: pointer; text-align: center;
-    text-transform: uppercase; letter-spacing: .5px; transition: transform .2s, box-shadow .2s;
-    position: relative; z-index: 6; white-space: nowrap;
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    padding: 14px 20px;
+    border-radius: 100px;
+    border: none;
+    border-bottom: 4px solid #c8c8c8;
+    background: var(--grey);
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 14px;
 }
-.btn:active { transform: translateY(2px); }
-.btn--grey {
-    background: linear-gradient(180deg, #e0e0e0 0%, #c0c0c0 100%);
-    color: #1a1a1a; border: 2px solid #999;
+.btn--accent {
+    background: var(--yellow);
+    border-bottom-color: #d8aa17;
+    font-size: 24px;
+    padding: 16px 20px;
 }
-.btn--grey:hover { background: linear-gradient(180deg, #d0d0d0 0%, #b0b0b0 100%); }
-.btn--green-big {
-    background: linear-gradient(180deg, #00c853 0%, #009624 100%);
-    color: #fff; font-size: 20px; padding: 16px 28px; border: 2px solid #00e676;
-}
-.btn--green-big:hover { background: linear-gradient(180deg, #00e676 0%, #00c853 100%); }
 
-.cards-pay { display: flex; justify-content: center; gap: 6px; margin: 12px 0 8px; }
-.cards-pay img { height: 28px; border-radius: 4px; }
-
-.total { font-size: 14px; font-weight: 800; margin-top: 6px; }
-.total s { opacity: .6; }
-.total--white { color: #fff; }
-.total--white s { color: #fff; }
-.total-ship { font-size: 12px; font-weight: 700; margin-top: 4px; margin-bottom: 6px; }
-.total-ship--green { color: var(--green); }
-.total-ship--white { color: #00FF00; }
-
-/* SOCIAL PROOF */
-.social-section { max-width: 1000px; margin: 40px auto 20px; padding: 0 16px; }
-.social-title { text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 24px; }
-.social-title span { color: var(--red); }
-.social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.testimonial {
-    background: #fff; border: 2px solid #e8e8e8; border-radius: 14px; padding: 18px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.06); transition: box-shadow .2s;
+.totals {
+    font-size: 14px;
+    font-weight: 700;
 }
-.testimonial:hover { box-shadow: 0 8px 24px rgba(0,0,0,.12); }
-.testimonial-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.testimonial-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 3px solid var(--red); }
-.testimonial-name { font-size: 15px; font-weight: 800; }
-.testimonial-verified { font-size: 11px; font-weight: 600; color: var(--green); display: flex; align-items: center; gap: 4px; }
-.testimonial-stars { color: var(--accent); font-size: 14px; margin-bottom: 6px; }
-.testimonial-text { font-size: 13px; font-weight: 600; color: #444; line-height: 1.5; }
+.totals .old { text-decoration: line-through; opacity: .5; margin-right: 8px; }
 
-/* GUARANTEE */
-.guarantee-section { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-.guarantee-block {
-    background: linear-gradient(180deg, #2a0a0a 0%, #1a0505 100%);
-    border-radius: 20px; padding: 40px 30px; text-align: center;
-    border: 2px solid rgba(196,30,58,.3); box-shadow: 0 8px 30px rgba(0,0,0,.3);
+/* TRUST */
+.trust {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,.15);
 }
-.guarantee-top { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
-.guarantee-badge-img { width: 130px; height: 130px; flex-shrink: 0; }
-.guarantee-text-wrap { text-align: left; max-width: 500px; }
-.guarantee-heading { font-size: 22px; font-weight: 900; color: var(--accent); margin-bottom: 10px; line-height: 1.3; }
-.guarantee-heading span { color: #fff; }
-.guarantee-desc { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.8); line-height: 1.6; }
-.cert-badges { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; margin: 24px 0; }
-.cert-badge-img { width: 70px; height: 70px; border-radius: 50%; object-fit: contain; }
-.label-wrap { margin-top: 24px; }
-.label-title { font-size: 18px; font-weight: 800; color: var(--accent); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
-.label-img { max-width: 100%; border-radius: 10px; border: 2px solid rgba(255,255,255,.1); }
-
-/* RESPONSIVE */
-.mobile-only { display: none; }
-.desktop-only { display: block; }
-@media (max-width: 960px) {
-    .grid { flex-direction: column; align-items: center; gap: 16px; }
-    .card, .card--best { width: 100%; max-width: 420px; }
-    .card:hover { transform: none; }
-    .card--best { order: -1; }
-    .card--3bot { order: 1; }
-    .card--2bot { order: 2; }
-    .mobile-only { display: block; }
-    .desktop-only { display: none; }
-    .mobile-row { display: flex; flex-direction: row; align-items: center; gap: 12px; }
-    .mobile-col-img { flex: 0 0 42%; max-width: 42%; }
-    .mobile-col-info { flex: 1; text-align: left; }
-    .mobile-col-info .price-row { justify-content: flex-start; }
-    .mobile-col-info .benefits { max-width: 100%; }
-    .social-grid { grid-template-columns: 1fr; }
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
-@media (max-width: 480px) {
-    .title { font-size: 22px; }
-    .title--green { font-size: 26px; }
-    .big-price { font-size: 48px; }
-    .btn { font-size: 15px; padding: 12px 16px; }
-    .mobile-price-big { font-size: 46px !important; }
-    .headline-main { font-size: 22px; }
-    .headline-sub { font-size: 14px; }
-    .guarantee-block { padding: 24px 16px; }
-    .guarantee-heading { font-size: 18px; }
-    .guarantee-desc { font-size: 13px; }
-    .guarantee-badge-img { width: 100px; height: 100px; }
-    .cert-badge-img { width: 55px; height: 55px; }
-    .label-title { font-size: 15px; }
+.trust-badges img {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    border-radius: 50%;
 }
+.guarantee-text {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,.75);
+}
+.guarantee-text b { color: var(--yellow); }
 </style>
 </head>
 <body>
 
-<div class="headline">
-    <div class="headline-main">Escolha seu Pacote com Desconto</div>
-    <div class="headline-sub">Selecione abaixo seu pacote e <em>economize hoje no JellyFil!</em></div>
+<div class="container">
+    <h1>Select Your Discount Package:</h1>
+    <div class="rating">
+        <span>Average Customer Rating</span>
+        <span style="font-size:22px;font-weight:900;">4.8</span>
+        <span class="stars">★★★★★</span>
+    </div>
 
-    <div id="cd">
-        <span id="cd-label">🔥 OFERTA POR TEMPO LIMITADO — TERMINA EM:</span>
-        <div id="cd-blocks">
-            <div class="cd-block"><span id="cd-m">14</span><small>MINUTOS</small></div>
-            <span class="cd-sep">:</span>
-            <div class="cd-block"><span id="cd-s">59</span><small>SEGUNDOS</small></div>
+    <div class="grid">
+
+        <!-- 2 BOTTLES -->
+        <div class="card">
+            <h3>Basic</h3>
+            <img class="bottle" src="images/bottles-2.png" alt="2 Potes JellyFil">
+            <div class="save">YOU SAVE $59!</div>
+            <div class="price-row">
+                <span class="dollar">$</span>
+                <span class="price">79</span>
+                <span class="per">/ bottle</span>
+            </div>
+            <div class="shipping paid">+ $9.99 SHIPPING</div>
+            <a class="btn" href="https://rt.vitalityformen.men/click4">Buy Now</a>
+            <div class="totals"><span class="old">$217</span>$158</div>
+        </div>
+
+        <!-- 6 BOTTLES - BEST -->
+        <div class="card card--best">
+            <div class="badge-best">Best Value</div>
+            <div class="badge-popular">Most Popular</div>
+            <h3>6 Bottles</h3>
+            <img class="bottle" src="images/bottles-6.png" alt="6 Potes JellyFil">
+            <div class="save">YOU SAVE $780!</div>
+            <div class="price-row">
+                <span class="dollar">$</span>
+                <span class="price">49</span>
+                <span class="per">/ bottle</span>
+            </div>
+            <div class="shipping">FREE SHIPPING</div>
+            <a class="btn btn--accent" href="https://rt.vitalityformen.men/click6">Buy Now</a>
+            <div class="totals"><span class="old">$1,074</span>$294</div>
+        </div>
+
+        <!-- 3 BOTTLES -->
+        <div class="card">
+            <h3>Good Value</h3>
+            <img class="bottle" src="images/bottles-3.png" alt="3 Potes JellyFil">
+            <div class="save">YOU SAVE $87!</div>
+            <div class="price-row">
+                <span class="dollar">$</span>
+                <span class="price">69</span>
+                <span class="per">/ bottle</span>
+            </div>
+            <div class="shipping">FREE SHIPPING</div>
+            <a class="btn" href="https://rt.vitalityformen.men/click5">Buy Now</a>
+            <div class="totals"><span class="old">$294</span>$207</div>
+        </div>
+
+    </div>
+
+    <div class="trust">
+        <div class="trust-badges">
+            <img src="images/guarantee-badge.webp" alt="Garantia">
+            <img src="images/gmp.png" alt="GMP Certified">
+            <img src="images/fda.png" alt="FDA Registered">
+            <img src="images/gmo.png" alt="Non-GMO">
+            <img src="images/foreign.png" alt="Made in USA">
+        </div>
+        <div class="guarantee-text">
+            <b>Garantia de 60 dias.</b> Se você não ficar 100% satisfeito com o JellyFil, devolvemos cada centavo, sem perguntas.
         </div>
     </div>
 </div>
-
-<div class="grid">
-
-    <!-- 2 BOTTLES -->
-    <div class="card card--2bot">
-        <a class="card-link" href="https://rt.vitalityformen.men/click4" aria-label="Aproveitar 2 potes"></a>
-        <div class="header">Basic</div>
-        <div class="body">
-            <div class="desktop-only">
-                <div class="title">2 POTES</div>
-                <div class="supply">Suprimento para 60 dias</div>
-                <div class="img-wrap"><img src="images/bottles-2.png" alt="2 Potes JellyFil"></div>
-                <div class="price-row">
-                    <span style="font-size:18px;font-weight:800;">$</span>
-                    <span class="big-price">79</span>
-                    <span style="font-size:16px;font-weight:700;color:#666;line-height:1.2;">Por<br>Pote</span>
-                </div>
-                <div class="shipping">+ $9.99 DE FRETE</div>
-                <ul class="benefits">
-                    <li><i class="fa-solid fa-circle-check check check--green"></i> <span class="save-text">ECONOMIZE $59!</span></li>
-                    <li><i class="fa-solid fa-circle-check check check--dark"></i> 15% DE DESCONTO</li>
-                    <li><i class="fa-solid fa-circle-check check check--dark"></i> GARANTIA DE 60 DIAS</li>
-                </ul>
-            </div>
-            <div class="mobile-only">
-                <div class="title">2 POTES</div>
-                <div class="supply">Suprimento para 60 dias</div>
-                <div class="mobile-row">
-                    <div class="mobile-col-img"><img src="images/bottles-2.png" alt="2 Potes JellyFil"></div>
-                    <div class="mobile-col-info">
-                        <div class="price-row">
-                            <span style="font-size:16px;font-weight:800;">$</span>
-                            <span class="mobile-price-big" style="font-size:52px;font-weight:900;line-height:1;">79</span>
-                            <span style="font-size:13px;font-weight:700;color:#666;line-height:1.2;">Por<br>Pote</span>
-                        </div>
-                        <ul class="benefits" style="margin-top:8px;">
-                            <li><i class="fa-solid fa-circle-check check check--green"></i> <span class="save-text">ECONOMIZE $59!</span></li>
-                            <li><i class="fa-solid fa-circle-check check check--dark"></i> GARANTIA DE 60 DIAS</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <a class="btn btn--grey" href="https://rt.vitalityformen.men/click4">COMPRAR AGORA</a>
-            <div class="cards-pay"><img src="images/cards.webp" alt="Formas de Pagamento" loading="lazy"></div>
-            <div class="total">TOTAL: <s>$217</s> <b>$158</b></div>
-            <div class="total-ship">+ $9.99 DE FRETE</div>
-        </div>
-    </div>
-
-    <!-- 6 BOTTLES - BEST VALUE -->
-    <div class="card card--best">
-        <a class="card-link" href="https://rt.vitalityformen.men/click6" aria-label="Aproveitar 6 potes"></a>
-        <div class="header header--best">MELHOR OFERTA!</div>
-        <div class="body body--best">
-            <div class="desktop-only">
-                <div class="title title--green">6 POTES</div>
-                <div class="supply supply--white">Suprimento para 180 dias</div>
-                <div class="img-wrap" style="max-width:250px;"><img src="images/bottles-6.png" alt="6 Potes JellyFil"></div>
-                <div class="price-row">
-                    <span style="font-size:18px;font-weight:800;color:#fff;">$</span>
-                    <span class="big-price big-price--green">49</span>
-                    <span style="font-size:16px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.2;">Por<br>Pote</span>
-                </div>
-                <div class="shipping shipping--white">FRETE GRÁTIS</div>
-                <ul class="benefits">
-                    <li><i class="fa-solid fa-circle-check check check--green"></i> <span class="save-text">ECONOMIZE $294</span></li>
-                    <li><i class="fa-solid fa-circle-check check check--green"></i> 50% DE DESCONTO</li>
-                    <li><i class="fa-solid fa-circle-check check check--green"></i> 3 POTES GRÁTIS</li>
-                </ul>
-                <div class="guarantee">GARANTIA DE 60 DIAS</div>
-                <div class="surprise">+SURPRESA &#x1F381;</div>
-            </div>
-            <div class="mobile-only">
-                <div class="title title--green">6 POTES</div>
-                <div class="supply supply--white">Suprimento para 180 dias</div>
-                <div class="mobile-row">
-                    <div class="mobile-col-img"><img src="images/bottles-6.png" alt="6 Potes JellyFil"></div>
-                    <div class="mobile-col-info">
-                        <div class="price-row">
-                            <span style="font-size:16px;font-weight:800;color:#fff;">$</span>
-                            <span class="mobile-price-big" style="font-size:52px;font-weight:900;color:#fff;line-height:1;">49</span>
-                            <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,.85);line-height:1.2;">Por<br>Pote</span>
-                        </div>
-                        <ul class="benefits" style="margin-top:8px;">
-                            <li><i class="fa-solid fa-circle-check check check--green"></i> <span class="save-text">ECONOMIZE $294</span></li>
-                            <li><i class="fa-solid fa-circle-check check check--green"></i> MAIOR DESCONTO</li>
-                            <li><i class="fa-solid fa-circle-check check check--green"></i> GARANTIA DE 60 DIAS</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <a class="btn btn--green-big" href="https://rt.vitalityformen.men/click6">COMPRAR AGORA</a>
-            <div class="cards-pay"><img src="images/cards.webp" alt="Formas de Pagamento" loading="lazy" style="background:#fff;padding:4px 6px;border-radius:6px;"></div>
-            <div class="total total--white">TOTAL: <s>$1,074</s> <b>$294</b></div>
-            <div class="total-ship total-ship--white">+ FRETE GRÁTIS</div>
-        </div>
-    </div>
-
-    <!-- 3 BOTTLES -->
-    <div class="card card--3bot">
-        <a class="card-link" href="https://rt.vitalityformen.men/click5" aria-label="Aproveitar 3 potes"></a>
-        <div class="header">Boa opção!</div>
-        <div class="body">
-            <div class="desktop-only">
-                <div class="title">3 POTES</div>
-                <div class="supply">Suprimento para 90 dias</div>
-                <div class="img-wrap"><img src="images/bottles-3.png" alt="3 Potes JellyFil"></div>
-                <div class="price-row">
-                    <span style="font-size:18px;font-weight:800;">$</span>
-                    <span class="big-price">69</span>
-                    <span style="font-size:16px;font-weight:700;color:#666;line-height:1.2;">Por<br>Pote</span>
-                </div>
-                <div class="shipping">FRETE GRÁTIS</div>
-                <ul class="benefits">
-                    <li><i class="fa-solid fa-circle-check check check--green"></i> <span class="save-text">ECONOMIZE $87!</span></li>
-                    <li><i class="fa-solid fa-circle-check check check--dark"></i> 1 POTE GRÁTIS</li>
-                    <li><i class="fa-solid fa-circle-check check check--dark"></i> 30% DE DESCONTO</li>
-                    <li><i class="fa-solid fa-circle-check check check--dark"></i> GARANTIA DE 60 DIAS</li>
-                </ul>
-            </div>
-            <div class="mobile-only">
-                <div class="title">3 POTES</div>
-                <div class="supply">Suprimento para 90 dias</div>
-                <div class="mobile-row">
-                    <div class="mobile-col-img"><img src="images/bottles-3.png" alt="3 Potes JellyFil"></div>
-                    <div class="mobile-col-info">
-                        <div class="price-row">
-                            <span style="font-size:16px;font-weight:800;">$</span>
-                            <span class="mobile-price-big" style="font-size:52px;font-weight:900;line-height:1;">69</span>
-                            <span style="font-size:13px;font-weight:700;color:#666;line-height:1.2;">Por<br>Pote</span>
-                        </div>
-                        <ul class="benefits" style="margin-top:8px;">
-                            <li><i class="fa-solid fa-circle-check check check--green"></i> <span class="save-text">ECONOMIZE $87!</span></li>
-                            <li><i class="fa-solid fa-circle-check check check--dark"></i> GARANTIA DE 60 DIAS</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <a class="btn btn--grey" href="https://rt.vitalityformen.men/click5">COMPRAR AGORA</a>
-            <div class="cards-pay"><img src="images/cards.webp" alt="Formas de Pagamento" loading="lazy"></div>
-            <div class="total">TOTAL: <s>$294</s> <b>$207</b></div>
-            <div class="total-ship total-ship--green">FRETE GRÁTIS</div>
-        </div>
-    </div>
-
-</div>
-
-<!-- SOCIAL PROOF -->
-<div class="social-section">
-    <div class="social-title"><span>Resultados Reais</span> de Clientes Reais</div>
-    <div class="social-grid">
-
-        <div class="testimonial">
-            <div class="testimonial-top">
-                <img class="testimonial-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/102287135/fBJnckMOGnftfUSx.png" alt="Mark T." loading="lazy">
-                <div>
-                    <div class="testimonial-name">Mark T., 45</div>
-                    <div class="testimonial-verified"><i class="fa-solid fa-circle-check" style="color:var(--green);"></i> Compra Verificada</div>
-                </div>
-            </div>
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="testimonial-text">"Uso o JellyFil há 3 meses e os resultados são incríveis. Minha energia está nas alturas e me sinto nos meus 20 anos novamente. Recomendo muito!"</div>
-        </div>
-
-        <div class="testimonial">
-            <div class="testimonial-top">
-                <img class="testimonial-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/102287135/RWSaAzTkuKLGUylW.png" alt="James W." loading="lazy">
-                <div>
-                    <div class="testimonial-name">James W., 38</div>
-                    <div class="testimonial-verified"><i class="fa-solid fa-circle-check" style="color:var(--green);"></i> Compra Verificada</div>
-                </div>
-            </div>
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="testimonial-text">"Minha esposa notou a diferença antes de mim! Mais disposição, melhor humor e durmo melhor também. Já fiz o segundo pedido."</div>
-        </div>
-
-        <div class="testimonial">
-            <div class="testimonial-top">
-                <img class="testimonial-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/102287135/yeWgyTqmpdjYPnVS.png" alt="Carlos R." loading="lazy">
-                <div>
-                    <div class="testimonial-name">Carlos R., 42</div>
-                    <div class="testimonial-verified"><i class="fa-solid fa-circle-check" style="color:var(--green);"></i> Compra Verificada</div>
-                </div>
-            </div>
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="testimonial-text">"Estava em dúvida no início, mas em 2 semanas já senti diferença na academia e em casa. Minha confiança voltou. Vale cada centavo!"</div>
-        </div>
-
-        <div class="testimonial">
-            <div class="testimonial-top">
-                <img class="testimonial-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/102287135/SWHJqIBdzScyJQgx.png" alt="David L." loading="lazy">
-                <div>
-                    <div class="testimonial-name">David L., 35</div>
-                    <div class="testimonial-verified"><i class="fa-solid fa-circle-check" style="color:var(--green);"></i> Compra Verificada</div>
-                </div>
-            </div>
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="testimonial-text">"O melhor suplemento que já experimentei. Mais energia nos treinos e melhor recuperação. Mudou o jogo!"</div>
-        </div>
-
-        <div class="testimonial">
-            <div class="testimonial-top">
-                <img class="testimonial-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/102287135/kCQiKYtGIzDfHkRx.png" alt="Robert M." loading="lazy">
-                <div>
-                    <div class="testimonial-name">Robert M., 50</div>
-                    <div class="testimonial-verified"><i class="fa-solid fa-circle-check" style="color:var(--green);"></i> Compra Verificada</div>
-                </div>
-            </div>
-            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="testimonial-text">"Aos 50 anos eu pensava que meus melhores dias tinham passado. O JellyFil provou que eu estava errado. Mais disposição e foco. Obrigado!"</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- GUARANTEE -->
-<div class="guarantee-section">
-    <div class="guarantee-block">
-        <div class="guarantee-top">
-            <img class="guarantee-badge-img" src="images/guarantee-badge.webp" alt="Garantia de Devolução do Dinheiro" loading="lazy">
-            <div class="guarantee-text-wrap">
-                <div class="guarantee-heading">100% de Satisfação ou <span>Seu Dinheiro de Volta</span><br>Garantia de 60 Dias</div>
-                <div class="guarantee-desc">Temos tanta confiança que você vai amar sua experiência com o JellyFil que oferecemos garantia de satisfação de 100% por 60 dias. Experimente, tire seu tempo e veja como funciona para você. Se não ficar totalmente satisfeito por qualquer motivo, basta nos avisar — e devolvemos cada centavo, sem perguntas.</div>
-            </div>
-        </div>
-
-        <div class="cert-badges">
-            <img class="cert-badge-img" src="images/gmp.png" alt="GMP Certified" loading="lazy">
-            <img class="cert-badge-img" src="images/fda.png" alt="FDA Registered" loading="lazy">
-            <img class="cert-badge-img" src="images/gmo.png" alt="Non-GMO" loading="lazy">
-            <img class="cert-badge-img" src="images/foreign.png" alt="Made in USA" loading="lazy">
-        </div>
-
-        <div class="label-wrap">
-            <div class="label-title">Informações do Suplemento</div>
-            <img class="label-img" src="images/supplement-facts.png" alt="JellyFil Supplement Facts" loading="lazy">
-        </div>
-    </div>
-</div>
-
-<script>
-(function() {
-    var DURATION = 15 * 60;
-    var KEY = 'jfl_cd_end';
-    var now = Math.floor(Date.now() / 1000);
-    var end;
-    try {
-        end = parseInt(sessionStorage.getItem(KEY));
-        if (!end || end < now) { end = now + DURATION; sessionStorage.setItem(KEY, end); }
-    } catch(e) { end = now + DURATION; }
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
-    function tick() {
-        var rem = Math.max(0, end - Math.floor(Date.now() / 1000));
-        var m = Math.floor(rem / 60), s = rem % 60;
-        var em = document.getElementById('cd-m'), es = document.getElementById('cd-s');
-        if (em) em.textContent = pad(m);
-        if (es) es.textContent = pad(s);
-        if (rem <= 0) { end = Math.floor(Date.now() / 1000) + DURATION; try { sessionStorage.setItem(KEY, end); } catch(e) {} }
-    }
-    tick();
-    setInterval(tick, 1000);
-})();
-</script>
 
 </body>
 </html>
