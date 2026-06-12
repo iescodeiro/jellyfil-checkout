@@ -1,205 +1,189 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JellyFil - Escolha seu Pacote</title>
+<title>JellyFil - Select Your Discount Package</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
     --black: #000;
-    --red: #f23d4c;
+    --red: #e8404f;
     --yellow: #fcc819;
-    --grey: #e1e1e1;
+    --cream: #fffbe0;
+    --green: #00a86b;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     font-family: 'Roboto', 'Segoe UI', sans-serif;
-    background: var(--black);
+    background: #000;
     color: #fff;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; }
 
 .container {
-    max-width: 1140px;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 40px 20px 60px;
-    text-align: center;
+    padding: 30px 16px 50px;
 }
 
 /* HEADING */
 h1 {
-    font-size: 38px;
+    text-align: center;
+    font-size: 26px;
     font-weight: 700;
-    color: var(--yellow);
-    margin-bottom: 14px;
+    line-height: 1.3;
+    margin-bottom: 18px;
 }
+h1 span { font-weight: 400; }
+
+.offer-banner {
+    background: var(--black);
+    border: 1px solid #fff;
+    border-radius: 12px;
+    text-align: center;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
 .rating {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 15px;
+    flex-wrap: wrap;
 }
-.rating .stars { color: var(--yellow); font-size: 20px; letter-spacing: 2px; }
+.rating .score { font-size: 18px; font-weight: 900; }
+.rating .stars { color: var(--yellow); font-size: 18px; letter-spacing: 2px; }
 
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    align-items: stretch;
-}
-@media (max-width: 860px) {
-    .grid { grid-template-columns: 1fr; }
-}
+/* CARDS */
+.cards { display: flex; flex-direction: column; gap: 18px; }
 
-/* CARD */
 .card {
     background: #fff;
     color: #000;
     border: 4px solid #000;
-    border-radius: 16px;
-    padding: 24px 18px 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
+    border-radius: 18px;
+    padding: 16px;
 }
-.card--best {
-    border: 6px solid var(--red);
-    background: #fffbe0;
-    transform: scale(1.04);
-    z-index: 1;
-}
-@media (max-width: 860px) { .card--best { transform: none; order: -1; } }
+.card--best { background: var(--cream); border-color: var(--red); border-width: 4px; }
 
-.badge-best {
-    background: var(--red);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
+.card-row { display: flex; align-items: center; gap: 14px; }
+.card-img { position: relative; flex: 0 0 38%; max-width: 38%; }
+
+.card-info { flex: 1; text-align: left; }
+.card-title {
+    font-size: 22px;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 6px 16px;
-    border-radius: 30px;
-    margin-bottom: 12px;
-}
-.badge-popular {
-    background: #000;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 5px 14px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-.card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 14px;
-}
-
-.card img.bottle {
-    max-width: 180px;
-    margin-bottom: 14px;
-}
-.card--best img.bottle { max-width: 220px; }
-
-.save {
-    color: var(--red);
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .price-row {
     display: flex;
     align-items: baseline;
-    justify-content: center;
     gap: 2px;
     line-height: 1;
+    margin-bottom: 6px;
 }
-.price-row .dollar { font-size: 28px; font-weight: 700; align-self: flex-start; margin-top: 4px; }
-.price-row .price { font-size: 60px; font-weight: 900; }
-.price-row .per { font-size: 14px; font-weight: 500; align-self: flex-end; margin-bottom: 8px; margin-left: 4px; }
+.price-row .dollar { font-size: 22px; font-weight: 700; align-self: flex-start; margin-top: 2px; }
+.price-row .price { font-size: 46px; font-weight: 900; }
+.price-row .per { font-size: 13px; font-weight: 500; color: #444; margin-left: 4px; }
 
-.shipping {
-    font-size: 13px;
-    font-weight: 700;
+/* SHIPPING BADGE (circle on image) */
+.ship-badge {
+    position: absolute;
+    bottom: -8px;
+    right: -10px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.1;
+}
+.ship-badge svg { width: 22px; height: 22px; margin-bottom: 1px; }
+
+/* PILLS / LABELS */
+.pill {
+    display: inline-block;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
     text-transform: uppercase;
-    color: #00a84f;
-    margin: 6px 0 16px;
+    letter-spacing: .5px;
+    padding: 5px 10px;
+    margin-bottom: 6px;
 }
-.shipping.paid { color: #666; }
+.pill--dark { background: var(--black); color: #fff; }
+.pill--yellow { background: var(--yellow); color: #000; }
+.pill-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
 
+.save-text { color: var(--red); font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+.shipping-text { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #666; margin-bottom: 4px; }
+
+/* CTA + TOTALS */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,.08);
+}
+.totals { font-size: 14px; font-weight: 700; }
+.totals .old { text-decoration: line-through; opacity: .45; margin-right: 6px; font-weight: 500; }
 .btn {
-    display: block;
-    width: 100%;
-    max-width: 240px;
-    padding: 14px 20px;
+    display: inline-block;
+    padding: 12px 26px;
     border-radius: 100px;
     border: none;
     border-bottom: 4px solid #c8c8c8;
-    background: var(--grey);
+    background: #e1e1e1;
     color: #000;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
     text-transform: uppercase;
-    text-align: center;
     cursor: pointer;
-    margin-bottom: 14px;
 }
-.btn--accent {
-    background: var(--yellow);
-    border-bottom-color: #d8aa17;
-    font-size: 24px;
-    padding: 16px 20px;
-}
+.btn--accent { background: var(--yellow); border-bottom-color: #d8aa17; }
 
-.totals {
-    font-size: 14px;
-    font-weight: 700;
-}
-.totals .old { text-decoration: line-through; opacity: .5; margin-right: 8px; }
-
-/* TRUST */
+/* TRUST ICONS */
 .trust {
-    margin-top: 50px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,.15);
-}
-.trust-badges {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 30px;
+    text-align: center;
 }
-.trust-badges img {
-    height: 60px;
-    width: 60px;
-    object-fit: contain;
-    border-radius: 50%;
-}
+.trust-item { flex: 1; }
+.trust-item svg { width: 44px; height: 44px; color: var(--green); margin-bottom: 8px; }
+.trust-item p { color: var(--green); font-size: 13px; font-weight: 700; line-height: 1.3; }
+
+/* GUARANTEE */
 .guarantee-text {
-    max-width: 640px;
-    margin: 0 auto;
-    font-size: 14px;
+    max-width: 600px;
+    margin: 26px auto 0;
+    text-align: center;
+    font-size: 13px;
     line-height: 1.6;
-    color: rgba(255,255,255,.75);
+    color: rgba(255,255,255,.7);
 }
 .guarantee-text b { color: var(--yellow); }
 </style>
@@ -207,75 +191,116 @@ h1 {
 <body>
 
 <div class="container">
-    <h1>Select Your Discount Package:</h1>
+    <h1><span>STEP 1:</span> Select Your Discount Package</h1>
+    <div class="offer-banner">Limited Time Offer</div>
     <div class="rating">
         <span>Average Customer Rating</span>
-        <span style="font-size:22px;font-weight:900;">4.8</span>
+        <span class="score">4.8</span>
         <span class="stars">★★★★★</span>
     </div>
 
-    <div class="grid">
-
-        <!-- 2 BOTTLES -->
-        <div class="card">
-            <h3>Basic</h3>
-            <img class="bottle" src="images/bottles-2.png" alt="2 Potes JellyFil">
-            <div class="save">YOU SAVE $59!</div>
-            <div class="price-row">
-                <span class="dollar">$</span>
-                <span class="price">79</span>
-                <span class="per">/ bottle</span>
-            </div>
-            <div class="shipping paid">+ $9.99 SHIPPING</div>
-            <a class="btn" href="https://rt.vitalityformen.men/click4">Buy Now</a>
-            <div class="totals"><span class="old">$217</span>$158</div>
-        </div>
+    <div class="cards">
 
         <!-- 6 BOTTLES - BEST -->
         <div class="card card--best">
-            <div class="badge-best">Best Value</div>
-            <div class="badge-popular">Most Popular</div>
-            <h3>6 Bottles</h3>
-            <img class="bottle" src="images/bottles-6.png" alt="6 Potes JellyFil">
-            <div class="save">YOU SAVE $780!</div>
-            <div class="price-row">
-                <span class="dollar">$</span>
-                <span class="price">49</span>
-                <span class="per">/ bottle</span>
+            <div class="card-row">
+                <div class="card-img">
+                    <img src="images/bottles-6.png" alt="6 Bottles JellyFil">
+                    <div class="ship-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="10"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                        FREE<br>SHIPPING
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">6 Bottles</div>
+                    <div class="price-row">
+                        <span class="dollar">$</span>
+                        <span class="price">49</span>
+                        <span class="per">/ bottle</span>
+                    </div>
+                    <div class="pill-row">
+                        <span class="pill pill--dark">✓ Most Popular</span>
+                        <span class="pill pill--yellow">Best Value!</span>
+                    </div>
+                    <div class="save-text">YOU SAVE $780!</div>
+                </div>
             </div>
-            <div class="shipping">FREE SHIPPING</div>
-            <a class="btn btn--accent" href="https://rt.vitalityformen.men/click6">Buy Now</a>
-            <div class="totals"><span class="old">$1,074</span>$294</div>
+            <div class="card-footer">
+                <div class="totals"><span class="old">$1,074</span>$294</div>
+                <a class="btn btn--accent" href="https://rt.vitalityformen.men/click6">Buy Now</a>
+            </div>
         </div>
 
         <!-- 3 BOTTLES -->
         <div class="card">
-            <h3>Good Value</h3>
-            <img class="bottle" src="images/bottles-3.png" alt="3 Potes JellyFil">
-            <div class="save">YOU SAVE $87!</div>
-            <div class="price-row">
-                <span class="dollar">$</span>
-                <span class="price">69</span>
-                <span class="per">/ bottle</span>
+            <div class="card-row">
+                <div class="card-img">
+                    <img src="images/bottles-3.png" alt="3 Bottles JellyFil">
+                    <div class="ship-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="10"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                        FREE<br>SHIPPING
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">3 Bottles</div>
+                    <div class="price-row">
+                        <span class="dollar">$</span>
+                        <span class="price">69</span>
+                        <span class="per">/ bottle</span>
+                    </div>
+                    <div class="pill-row">
+                        <span class="pill pill--dark">Good Value</span>
+                    </div>
+                    <div class="save-text">YOU SAVE $87!</div>
+                </div>
             </div>
-            <div class="shipping">FREE SHIPPING</div>
-            <a class="btn" href="https://rt.vitalityformen.men/click5">Buy Now</a>
-            <div class="totals"><span class="old">$294</span>$207</div>
+            <div class="card-footer">
+                <div class="totals"><span class="old">$294</span>$207</div>
+                <a class="btn" href="https://rt.vitalityformen.men/click5">Buy Now</a>
+            </div>
+        </div>
+
+        <!-- 2 BOTTLES -->
+        <div class="card">
+            <div class="card-row">
+                <div class="card-img">
+                    <img src="images/bottles-2.png" alt="2 Bottles JellyFil">
+                </div>
+                <div class="card-info">
+                    <div class="card-title">2 Bottles</div>
+                    <div class="price-row">
+                        <span class="dollar">$</span>
+                        <span class="price">79</span>
+                        <span class="per">/ bottle</span>
+                    </div>
+                    <div class="shipping-text">+ $9.99 Shipping</div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="totals"><span class="old">$217</span>$158</div>
+                <a class="btn" href="https://rt.vitalityformen.men/click4">Buy Now</a>
+            </div>
         </div>
 
     </div>
 
     <div class="trust">
-        <div class="trust-badges">
-            <img src="images/guarantee-badge.webp" alt="Garantia">
-            <img src="images/gmp.png" alt="GMP Certified">
-            <img src="images/fda.png" alt="FDA Registered">
-            <img src="images/gmo.png" alt="Non-GMO">
-            <img src="images/foreign.png" alt="Made in USA">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="7" r="3"/><path d="M14 4h2"/><path d="M21 11v6"/><path d="M18 14h6"/></svg>
+            <p>Doctor<br>Approved</p>
         </div>
-        <div class="guarantee-text">
-            <b>Garantia de 60 dias.</b> Se você não ficar 100% satisfeito com o JellyFil, devolvemos cada centavo, sem perguntas.
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="10"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            <p>Free Shipping<br>&amp; Handling*</p>
         </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="7"/><path d="M9.5 10l1.8 1.8L15 8.5"/><path d="M7.5 16.5L6 22l6-3 6 3-1.5-5.5"/></svg>
+            <p>Money Back<br>Guarantee</p>
+        </div>
+    </div>
+
+    <div class="guarantee-text">
+        <b>60-Day Money-Back Guarantee.</b> If you're not 100% satisfied with JellyFil, we'll refund every penny — no questions asked.
     </div>
 </div>
 
